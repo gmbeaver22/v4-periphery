@@ -25,4 +25,17 @@ contract LiquidityAmountsTest is Test {
 
         assertEq(actualLiquidity, expectedLiquidity);
     }
+
+    function testFuzz_GetLiquidityForAmount0(
+        uint160 sqrtRatioAX96,
+        uint160 sqrtRatioBX96,
+        uint256 amount0
+    ) public {
+        uint128 actualLiquidity = LiquidityAmounts.getLiquidityForAmount0(
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            amount0
+        );
+        assertEq(actualLiquidity, 0); // Assert that the result is always zero
+    }
 }
